@@ -476,16 +476,18 @@ window.addEventListener('load', () => {
   hv.src = hv.dataset.src;
   const sdk = document.createElement('script');
   sdk.src = 'https://player.vimeo.com/api/player.js';
-  // skip the film's opening (Ryan on camera): seek past HERO_START, keep the aerial still up until then, and loop back to HERO_START instead of 0
-  const HERO_START = 5;
+  // hero = 0:28-0:34 of the film on a loop (Ryan 11/3); aerial still holds until playback is inside that window
+  const HERO_START = 28, HERO_END = 34;
   sdk.onload = () => { try {
     const pl = new Vimeo.Player(hv);
-    pl.ready().then(() => pl.setCurrentTime(HERO_START)).catch(() => {});
+    const back = () => pl.setCurrentTime(HERO_START).then(() => pl.play()).catch(() => {});
+    pl.ready().then(back).catch(() => {});
     pl.on('timeupdate', d => {
-      if (d.seconds < HERO_START - 0.3) { hv.classList.remove('on'); pl.setCurrentTime(HERO_START).catch(() => {}); }
+      if (d.seconds < HERO_START - 0.3) { hv.classList.remove('on'); back(); }
+      else if (d.seconds >= HERO_END) back();
       else hv.classList.add('on');
     });
-    pl.on('ended', () => pl.setCurrentTime(HERO_START).then(() => pl.play()).catch(() => {}));
+    pl.on('ended', back);
   } catch(e){} };
   document.head.appendChild(sdk);
 });
