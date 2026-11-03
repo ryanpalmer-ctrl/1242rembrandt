@@ -181,7 +181,7 @@ footer p{max-width:1000px;margin-top:12px}
 .tour .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media(max-width:600px){.tour .head{margin-bottom:28px}.tour .frame{height:72svh}}
 
-/* phone flow (Ryan 11/3): heading before specs on flipped chapters, tighter rhythm */
+/* phone flow: heading before specs on flipped chapters, tighter rhythm */
 @media(max-width:900px){
   .chapter.flip .sticky{order:-1}
   .stat:last-child{grid-column:1/-1;border-left:0}
@@ -529,7 +529,7 @@ window.addEventListener('load', () => {
   hv.src = hv.dataset.src;
   const sdk = document.createElement('script');
   sdk.src = 'https://player.vimeo.com/api/player.js';
-  // hero = 0:28-0:31 of the film on a loop (Ryan 11/3); aerial still holds until playback is inside that window
+  // hero = 0:28-0:31 of the film on a loop; aerial still holds until playback is inside that window
   const HERO_START = 28, HERO_END = 31;
   sdk.onload = () => { try {
     const pl = new Vimeo.Player(hv);
