@@ -192,7 +192,7 @@ footer p{max-width:1000px;margin-top:12px}
 <header class="hero" id="top">
   <div class="media">
     <img src="images/wide.jpg" alt="1242 Rembrandt Circle from above">
-    <iframe id="heroVid" title="1242 Rembrandt" allow="autoplay; fullscreen; picture-in-picture" data-src="https://player.vimeo.com/video/1242735210?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1&amp;quality=1080p"></iframe>
+    <iframe id="heroVid" title="1242 Rembrandt" allow="autoplay; fullscreen; picture-in-picture" data-src="https://player.vimeo.com/video/1242735210?background=1&amp;autoplay=1&amp;loop=0&amp;muted=1&amp;dnt=1&amp;quality=1080p"></iframe>
   </div>
   <div class="copy">
     <h1 class="h1"><span class="reveal-line"><span>1242</span></span><span class="reveal-line"><span><em>Rembrandt</em></span></span></h1>
@@ -476,7 +476,17 @@ window.addEventListener('load', () => {
   hv.src = hv.dataset.src;
   const sdk = document.createElement('script');
   sdk.src = 'https://player.vimeo.com/api/player.js';
-  sdk.onload = () => { try { const pl = new Vimeo.Player(hv); pl.on('timeupdate', d => { if (d.seconds > 0.4) hv.classList.add('on'); }); } catch(e){} };
+  // skip the film's opening (Ryan on camera): seek past HERO_START, keep the aerial still up until then, and loop back to HERO_START instead of 0
+  const HERO_START = 5;
+  sdk.onload = () => { try {
+    const pl = new Vimeo.Player(hv);
+    pl.ready().then(() => pl.setCurrentTime(HERO_START)).catch(() => {});
+    pl.on('timeupdate', d => {
+      if (d.seconds < HERO_START - 0.3) { hv.classList.remove('on'); pl.setCurrentTime(HERO_START).catch(() => {}); }
+      else hv.classList.add('on');
+    });
+    pl.on('ended', () => pl.setCurrentTime(HERO_START).then(() => pl.play()).catch(() => {}));
+  } catch(e){} };
   document.head.appendChild(sdk);
 });
 setTimeout(() => document.body.classList.add('ready'), 3500);
