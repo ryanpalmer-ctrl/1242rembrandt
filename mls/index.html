@@ -171,6 +171,33 @@ footer p{max-width:1000px;margin-top:12px}
 #lb iframe{width:min(1400px,92vw);aspect-ratio:16/9;border:0;background:#000}
 #lb iframe.v{width:auto;height:88vh;aspect-ratio:9/16}
 #lb .x{position:absolute;top:18px;right:24px;color:#fff;font-size:34px;background:none;border:0;cursor:pointer;font-family:var(--serif)}
+/* phone flow (Ryan 11/3): heading before specs on flipped chapters, tighter rhythm */
+@media(max-width:900px){
+  .chapter.flip .sticky{order:-1}
+  .stat:last-child{grid-column:1/-1;border-left:0}
+}
+@media(max-width:600px){
+  .pad{padding:64px 0}
+  .h2{font-size:clamp(34px,9.5vw,44px)}
+  .rule{margin:22px 0}
+  .chapter{gap:34px}
+  .chapter .why{margin-top:24px;padding:18px 20px}
+  .specs li{padding:14px 0;gap:2px}
+  .specs li b{font-size:17px}
+  .specs li em{font-size:14px;margin-top:2px}
+  .three .item{padding:40px 4px}
+  .three h3{font-size:30px;margin:12px 0 10px}
+  .stat{padding:26px 8px}
+  .light .dial{margin-top:36px}
+  .light .dial div{padding:26px 22px}
+  .light .dial b{font-size:28px;margin:8px 0}
+  .film .head{margin-bottom:28px}
+  .aerial img{height:78vh}
+  .hero .copy{bottom:44px}
+  #nav{padding:16px var(--gut)}
+  #nav .lockup b{letter-spacing:.2em}
+  #nav .links a.cta{padding:8px 14px}
+}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.fade{opacity:1;transform:none}}
 </style>
 </head>
