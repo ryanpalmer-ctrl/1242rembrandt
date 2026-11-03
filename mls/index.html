@@ -8,7 +8,7 @@
 <meta name="description" content="1242 Rembrandt Circle, Charlotte. A full flat acre inside Charlotte with a pool house, gym, cold plunge and a private sport court.">
 <meta property="og:title" content="1242 Rembrandt Circle · Charlotte">
 <meta property="og:description" content="A full flat acre inside Charlotte. A pool house with its own gym and cold plunge. Your own private sport court.">
-<meta property="og:image" content="https://1242rembrandt.com/images/wide.jpg">
+<meta property="og:image" content="https://1242rembrandt.com/images/p/041.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
@@ -63,7 +63,7 @@ body.ready #loader{opacity:0;visibility:hidden}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 50%,rgba(0,0,0,.72) 100%)}
 .hero .copy{position:absolute;left:var(--gut);right:var(--gut);bottom:clamp(40px,8vh,90px);z-index:2;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:end}
 .h1{font-family:var(--serif);font-weight:300;font-size:clamp(66px,12vw,200px);line-height:.88;letter-spacing:-.03em}
-.reveal-line{display:block;overflow:hidden}
+.reveal-line{display:block;overflow:hidden;padding:.1em .12em .14em 0;margin:-.1em -.12em -.14em 0}
 .reveal-line span{display:block;transform:translateY(105%);transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
 body.ready .reveal-line span{transform:none}
 body.ready .reveal-line:nth-child(2) span{transition-delay:.15s}
@@ -181,6 +181,41 @@ footer p{max-width:1000px;margin-top:12px}
 .tour .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media(max-width:600px){.tour .head{margin-bottom:28px}.tour .frame{height:72svh}}
 
+/* photos */
+.band{display:grid;gap:8px;padding:8px}
+.band.duo{grid-template-columns:2fr 1fr}
+.band.trio{grid-template-columns:repeat(3,1fr)}
+.band figure,.ggrid figure{position:relative;overflow:hidden;background:var(--stone);cursor:zoom-in}
+.band figure{height:clamp(340px,76vh,860px)}
+.band img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.band figure:hover img,.ggrid figure:hover img{transform:scale(1.03)}
+.gallery .head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px;flex-wrap:wrap}
+.sbox{position:relative}
+.ggrid{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;height:clamp(300px,62vh,660px);scrollbar-width:thin;overscroll-behavior-x:contain}
+.ggrid figure{flex:0 0 auto;height:100%;scroll-snap-align:start}
+.ggrid img{height:100%;width:auto;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
+.sa{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:54px;height:54px;border-radius:50%;border:0;background:rgba(247,246,244,.92);color:var(--ink);font-family:var(--serif);font-size:34px;line-height:1;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.18)}
+.sl{left:14px}.sr{right:14px}
+.gallery .more{text-align:center;margin-top:40px}
+#plb{position:fixed;inset:0;background:rgba(8,8,8,.97);z-index:210;display:none;align-items:center;justify-content:center;touch-action:pan-y}
+#plb.open{display:flex}
+#plb img{max-width:94vw;max-height:84vh;object-fit:contain;user-select:none;-webkit-user-drag:none}
+#plb .cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;color:rgba(255,255,255,.7)}
+#plb button{position:absolute;background:none;border:0;color:#fff;cursor:pointer;font-family:var(--serif);font-weight:300}
+#plb .x{top:14px;right:22px;font-size:38px}
+#plb .nv{top:50%;transform:translateY(-50%);font-size:54px;padding:20px;opacity:.75}
+#plb .nv:hover{opacity:1}
+#plb .pv{left:6px} #plb .nx{right:6px}
+@media(max-width:700px){
+  .band{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:6px;padding:6px;scrollbar-width:none}
+  .band::-webkit-scrollbar{display:none}
+  .band figure{flex:0 0 84vw;height:auto;aspect-ratio:4/5;scroll-snap-align:center}
+  .band figure.w{aspect-ratio:4/3;align-self:center}
+  .ggrid{height:56svh;gap:6px}.sa{display:none}
+  #plb .nv{display:none}
+  #plb img{max-width:100vw;max-height:78vh}
+}
+
 /* phone flow: heading before specs on flipped chapters, tighter rhythm */
 @media(max-width:900px){
   .chapter.flip .sticky{order:-1}
@@ -220,6 +255,7 @@ footer p{max-width:1000px;margin-top:12px}
   <div class="links">
     <a href="#film">The Film</a>
     <a href="#tour">3D Tour</a>
+    <a href="#photos">Photos</a>
     <a href="#acre">The Acre</a>
     <a href="#inside">Inside</a>
     <a href="#outside">Outdoor Living</a>
@@ -293,6 +329,20 @@ footer p{max-width:1000px;margin-top:12px}
   </div>
 </section>
 
+<section class="pad gallery" id="photos">
+  <div class="wrap">
+    <div class="head fade">
+      <div>
+        <div class="eyebrow red">The Photos</div>
+        <h2 class="h2" style="margin-top:20px">Every corner, <em>in full.</em></h2>
+      </div>
+      <p class="lead" style="max-width:420px;color:var(--mute)">88 photos of the house, the pool house, the court and the acre. Swipe through, or tap any photo to open it full screen.</p>
+    </div>
+    <div class="sbox"><button class="sa sl" aria-label="Scroll left">‹</button><div class="ggrid"><figure data-p="041"><img src="../images/m/041.jpg" width="1300" height="866" alt="Front exterior" loading="lazy"></figure><figure data-p="039"><img src="../images/m/039.jpg" width="1300" height="866" alt="Front exterior" loading="lazy"></figure><figure data-p="007"><img src="../images/m/007.jpg" width="1300" height="730" alt="Front exterior" loading="lazy"></figure><figure data-p="042"><img src="../images/m/042.jpg" width="1300" height="866" alt="Garage" loading="lazy"></figure><figure data-p="043"><img src="../images/m/043.jpg" width="1300" height="866" alt="Front yard" loading="lazy"></figure><figure data-p="047"><img src="../images/m/047.jpg" width="866" height="1300" alt="Exterior" loading="lazy"></figure><figure data-p="040"><img src="../images/m/040.jpg" width="1300" height="866" alt="Front porch" loading="lazy"></figure><figure data-p="086"><img src="../images/m/086.jpg" width="866" height="1300" alt="Front entry" loading="lazy"></figure><figure data-p="085"><img src="../images/m/085.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="027"><img src="../images/m/027.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="035"><img src="../images/m/035.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="022"><img src="../images/m/022.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="020"><img src="../images/m/020.jpg" width="866" height="1300" alt="Living room" loading="lazy"></figure><figure data-p="012"><img src="../images/m/012.jpg" width="866" height="1300" alt="Living room" loading="lazy"></figure><figure data-p="023"><img src="../images/m/023.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="038"><img src="../images/m/038.jpg" width="866" height="1300" alt="Staircase" loading="lazy"></figure><figure data-p="014"><img src="../images/m/014.jpg" width="866" height="1300" alt="Dining room" loading="lazy"></figure><figure data-p="015"><img src="../images/m/015.jpg" width="866" height="1300" alt="Dining room" loading="lazy"></figure><figure data-p="021"><img src="../images/m/021.jpg" width="866" height="1300" alt="Dining room" loading="lazy"></figure><figure data-p="033"><img src="../images/m/033.jpg" width="866" height="1300" alt="Dining room" loading="lazy"></figure><figure data-p="011"><img src="../images/m/011.jpg" width="839" height="1300" alt="Kitchen" loading="lazy"></figure><figure data-p="013"><img src="../images/m/013.jpg" width="866" height="1300" alt="Kitchen" loading="lazy"></figure><figure data-p="019"><img src="../images/m/019.jpg" width="866" height="1300" alt="Kitchen" loading="lazy"></figure><figure data-p="017"><img src="../images/m/017.jpg" width="866" height="1300" alt="Kitchen" loading="lazy"></figure><figure data-p="018"><img src="../images/m/018.jpg" width="866" height="1300" alt="Kitchen" loading="lazy"></figure><figure data-p="016"><img src="../images/m/016.jpg" width="866" height="1300" alt="Kitchen" loading="lazy"></figure><figure data-p="032"><img src="../images/m/032.jpg" width="866" height="1300" alt="Powder bath" loading="lazy"></figure><figure data-p="024"><img src="../images/m/024.jpg" width="866" height="1300" alt="Primary bedroom" loading="lazy"></figure><figure data-p="028"><img src="../images/m/028.jpg" width="866" height="1300" alt="Primary bedroom" loading="lazy"></figure><figure data-p="031"><img src="../images/m/031.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="025"><img src="../images/m/025.jpg" width="866" height="1300" alt="Primary bath" loading="lazy"></figure><figure data-p="029"><img src="../images/m/029.jpg" width="866" height="1300" alt="Primary bath" loading="lazy"></figure><figure data-p="026"><img src="../images/m/026.jpg" width="866" height="1300" alt="Primary bath" loading="lazy"></figure><figure data-p="030"><img src="../images/m/030.jpg" width="866" height="1300" alt="Primary bath" loading="lazy"></figure><figure data-p="034"><img src="../images/m/034.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="036"><img src="../images/m/036.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="037"><img src="../images/m/037.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="046"><img src="../images/m/046.jpg" width="1300" height="866" alt="Covered porch" loading="lazy"></figure><figure data-p="048"><img src="../images/m/048.jpg" width="1300" height="866" alt="Covered porch" loading="lazy"></figure><figure data-p="052"><img src="../images/m/052.jpg" width="1300" height="866" alt="Covered porch" loading="lazy"></figure><figure data-p="083"><img src="../images/m/083.jpg" width="866" height="1300" alt="Covered porch fireplace" loading="lazy"></figure><figure data-p="049"><img src="../images/m/049.jpg" width="1300" height="866" alt="Covered porch" loading="lazy"></figure><figure data-p="050"><img src="../images/m/050.jpg" width="1300" height="866" alt="Outdoor kitchen" loading="lazy"></figure><figure data-p="051"><img src="../images/m/051.jpg" width="1300" height="866" alt="Covered porch" loading="lazy"></figure><figure data-p="054"><img src="../images/m/054.jpg" width="1300" height="866" alt="Covered porch" loading="lazy"></figure><figure data-p="057"><img src="../images/m/057.jpg" width="1300" height="866" alt="Covered porch" loading="lazy"></figure><figure data-p="087"><img src="../images/m/087.jpg" width="866" height="1300" alt="Fire pit" loading="lazy"></figure><figure data-p="082"><img src="../images/m/082.jpg" width="866" height="1300" alt="Fire pit" loading="lazy"></figure><figure data-p="084"><img src="../images/m/084.jpg" width="866" height="1300" alt="Fire pit" loading="lazy"></figure><figure data-p="044"><img src="../images/m/044.jpg" width="1300" height="866" alt="Pool and spa" loading="lazy"></figure><figure data-p="045"><img src="../images/m/045.jpg" width="1300" height="866" alt="Pool and spa" loading="lazy"></figure><figure data-p="066"><img src="../images/m/066.jpg" width="1300" height="866" alt="Pool and spa" loading="lazy"></figure><figure data-p="055"><img src="../images/m/055.jpg" width="1300" height="866" alt="Pool and spa" loading="lazy"></figure><figure data-p="080"><img src="../images/m/080.jpg" width="866" height="1300" alt="Pool and spa" loading="lazy"></figure><figure data-p="081"><img src="../images/m/081.jpg" width="866" height="1300" alt="Pool and spa" loading="lazy"></figure><figure data-p="072"><img src="../images/m/072.jpg" width="866" height="1300" alt="Pool deck" loading="lazy"></figure><figure data-p="053"><img src="../images/m/053.jpg" width="1300" height="866" alt="Backyard" loading="lazy"></figure><figure data-p="073"><img src="../images/m/073.jpg" width="866" height="1300" alt="Pool house" loading="lazy"></figure><figure data-p="060"><img src="../images/m/060.jpg" width="1300" height="866" alt="Pool house" loading="lazy"></figure><figure data-p="059"><img src="../images/m/059.jpg" width="1300" height="866" alt="Pool house" loading="lazy"></figure><figure data-p="062"><img src="../images/m/062.jpg" width="1300" height="866" alt="Pool house" loading="lazy"></figure><figure data-p="065"><img src="../images/m/065.jpg" width="1300" height="866" alt="Pool house" loading="lazy"></figure><figure data-p="077"><img src="../images/m/077.jpg" width="866" height="1300" alt="Pool house" loading="lazy"></figure><figure data-p="076"><img src="../images/m/076.jpg" width="866" height="1300" alt="Pool house" loading="lazy"></figure><figure data-p="063"><img src="../images/m/063.jpg" width="1300" height="866" alt="Pool house kitchenette" loading="lazy"></figure><figure data-p="074"><img src="../images/m/074.jpg" width="866" height="1300" alt="Pool house kitchenette" loading="lazy"></figure><figure data-p="078"><img src="../images/m/078.jpg" width="866" height="1300" alt="Pool house" loading="lazy"></figure><figure data-p="075"><img src="../images/m/075.jpg" width="866" height="1300" alt="Pool house kitchenette" loading="lazy"></figure><figure data-p="064"><img src="../images/m/064.jpg" width="1300" height="866" alt="Pool house gym" loading="lazy"></figure><figure data-p="069"><img src="../images/m/069.jpg" width="1300" height="866" alt="Pool house gym" loading="lazy"></figure><figure data-p="061"><img src="../images/m/061.jpg" width="1300" height="866" alt="Pool house bath" loading="lazy"></figure><figure data-p="058"><img src="../images/m/058.jpg" width="1300" height="866" alt="Pool house bath" loading="lazy"></figure><figure data-p="056"><img src="../images/m/056.jpg" width="1300" height="866" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="067"><img src="../images/m/067.jpg" width="1300" height="866" alt="Sport court" loading="lazy"></figure><figure data-p="068"><img src="../images/m/068.jpg" width="1300" height="866" alt="Sport court" loading="lazy"></figure><figure data-p="071"><img src="../images/m/071.jpg" width="1300" height="866" alt="Sport court" loading="lazy"></figure><figure data-p="079"><img src="../images/m/079.jpg" width="1300" height="860" alt="Backyard" loading="lazy"></figure><figure data-p="088"><img src="../images/m/088.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="089"><img src="../images/m/089.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="070"><img src="../images/m/070.jpg" width="866" height="1300" alt="1242 Rembrandt Circle" loading="lazy"></figure><figure data-p="002"><img src="../images/m/002.jpg" width="1300" height="730" alt="Aerial" loading="lazy"></figure><figure data-p="003"><img src="../images/m/003.jpg" width="1300" height="731" alt="Aerial" loading="lazy"></figure><figure data-p="004"><img src="../images/m/004.jpg" width="1300" height="731" alt="Aerial" loading="lazy"></figure><figure data-p="005"><img src="../images/m/005.jpg" width="1300" height="731" alt="Aerial" loading="lazy"></figure><figure data-p="006"><img src="../images/m/006.jpg" width="1300" height="731" alt="Aerial" loading="lazy"></figure><figure data-p="009"><img src="../images/m/009.jpg" width="1300" height="730" alt="Aerial" loading="lazy"></figure><figure data-p="001"><img src="../images/m/001.jpg" width="1300" height="731" alt="Aerial" loading="lazy"></figure><figure data-p="010"><img src="../images/m/010.jpg" width="1300" height="730" alt="Aerial" loading="lazy"></figure></div><button class="sa sr" aria-label="Scroll right">›</button></div>
+    <div class="more"><button class="btn solid" data-all>View full screen</button></div>
+  </div>
+</section>
+
 <section class="pad" id="acre">
   <div class="wrap chapter">
     <div class="sticky fade">
@@ -308,7 +358,7 @@ footer p{max-width:1000px;margin-top:12px}
       <li><span>Night lighting</span><div><b>Hardwired landscape lighting</b><em>Uplights in the back trees, under the retaining-wall lip along the patio, around the fire pit bench and across the full front of the house</em></div></li>
       <li><span>Hardscape</span><div><b>Custom pavers</b><em>Porch, patio and walkways, all one material and color for a clean, continuous look</em></div></li>
       <li><span>Sport court</span><div><b>Pickleball + basketball</b><em>Pro epoxy finish, Goalrilla hoop</em></div></li>
-      <li><span>Garage</span><div><b>3 cars, EV charging</b><em>Built-in cabinetry, pull-down attic access</em></div></li>
+      <li><span>Garage</span><div><b>Side-load 3 car, EV charging</b><em>Keeps the front of the house clean. Built-in cabinetry, pull-down attic access</em></div></li>
     </ul>
   </div>
 </section>
@@ -320,6 +370,7 @@ footer p{max-width:1000px;margin-top:12px}
       <li><span>Roof</span><div><b>CertainTeed Belmont, Black Granite</b><em>A slate-look luxury shingle on the main house, standing seam metal on the back porch and pool house</em></div></li>
       <li><span>Windows</span><div><b>Sierra Pacific</b><em>Casement and fixed, wood inside and aluminum-clad outside, in black</em></div></li>
       <li><span>Doors</span><div><b>Sierra Pacific + Sightline steel</b><em>All exterior doors are Sierra Pacific, with oversized Sightline steel doors</em></div></li>
+      <li><span>Front porch</span><div><b>Covered, with a steel and glass front door</b><em>Reached by a stepping stone walk through the front beds</em></div></li>
       <li><span>Lighting</span><div><b>Gas lanterns</b><em>On the front porch and out back</em></div></li>
       <li><span>Garage doors</span><div><b>IntelliCore insulated doors</b><em>Solid, slate finish, matching on all three bays</em></div></li>
     </ul>
@@ -343,11 +394,13 @@ footer p{max-width:1000px;margin-top:12px}
       <div class="why"><span class="eyebrow">Why it matters</span><p>The 10 inch French white oak downstairs is engineered with a real wood wear layer thick enough to be refinished up to three times over its life. It wears beautifully, and wide planks like these make every room feel bigger and calmer.</p></div>
     </div>
     <ul class="specs fade">
+      <li><span>Foyer</span><div><b>Patterned white oak ceiling</b><em>Picture frame wall molding and a steel and glass front door</em></div></li>
       <li><span>Floors</span><div><b>10" French white oak</b><em>Main level, wear layer can be refinished up to 3 times. 4" white oak upstairs, site finished</em></div></li>
       <li><span>Ceilings</span><div><b>White oak beams + ceiling detail</b><em>In the dining room, under floor to ceiling windows</em></div></li>
-      <li><span>Living room</span><div><b>Venetian plaster fireplace</b><em>Hand-troweled plaster, not paint</em></div></li>
+      <li><span>Living room</span><div><b>Venetian plaster fireplace</b><em>Hand-troweled plaster, not paint, flanked by floating white oak shelves, with a wall of glass out to the covered porch</em></div></li>
+      <li><span>Staircase</span><div><b>Open stair, black steel railing</b><em>White oak treads, right off the living room</em></div></li>
       <li><span>Millwork</span><div><b>Heavy millwork throughout</b><em>With custom cabinetry in the kitchen and primary suite</em></div></li>
-      <li><span>Powder bath</span><div><b>Custom poured concrete vanity</b><em>Marble vessel sink, fabric wallpaper, hand cut tile</em></div></li>
+      <li><span>Powder bath</span><div><b>Custom poured concrete vanity</b><em>Marble vessel sink, wall mount brass faucet, fabric wallpaper, hand cut tile</em></div></li>
       <li><span>Office</span><div><b>Grass cloth + built-ins</b><em>Floor to ceiling windows</em></div></li>
       <li><span>Tile</span><div><b>Large-format tile</b><em>Fewer grout lines, cleaner look</em></div></li>
       <li><span>Audio</span><div><b>Built-in Sonos audio</b><em>Living room, kitchen, breakfast area and back porch, plus its own system in the pool house</em></div></li>
@@ -359,10 +412,11 @@ footer p{max-width:1000px;margin-top:12px}
   <div class="wrap chapter flip">
     <ul class="specs fade">
       <li><span>Counters</span><div><b>Taj Mahal quartzite</b><em>A natural stone, harder and more heat-tolerant than marble with a soft, warm veining</em></div></li>
-      <li><span>Range</span><div><b>48" Wolf</b><em>A true professional range</em></div></li>
+      <li><span>Range</span><div><b>48" Wolf</b><em>A true professional range under a custom hood, with a handmade style tile backsplash</em></div></li>
+      <li><span>Cabinetry</span><div><b>Custom, with white oak glass front uppers</b><em>Brass hardware and fixtures, apron front sink under the window</em></div></li>
       <li><span>Refrigeration</span><div><b>Thermador 30" fridge + 30" freezer columns</b><em>Panel-ready, built in. Models T30IR905SP + T30IF905SP, ice maker included</em></div></li>
       <li><span>Dishwasher</span><div><b>Thermador</b><em>Plus a Sharp drawer microwave and a trash drawer</em></div></li>
-      <li><span>Island</span><div><b>Full bar sink</b><em>So two people can work the kitchen at once</em></div></li>
+      <li><span>Island</span><div><b>White oak island with a full bar sink</b><em>Seating along one side, so two people can work the kitchen while everyone else hangs out</em></div></li>
       <li><span>Pantry</span><div><b>Walk-in pantry</b><em>With a wine and beverage cooler</em></div></li>
     </ul>
     <div class="sticky fade">
@@ -385,7 +439,7 @@ footer p{max-width:1000px;margin-top:12px}
       <div class="why"><span class="eyebrow">Why it matters</span><p>A washer and dryer inside the primary closet means clothes go from the hamper to the hanger without leaving the room. Once you've lived with it you won't go back.</p></div>
     </div>
     <ul class="specs fade">
-      <li><span>Bath</span><div><b>Limestone + Taj Mahal</b><em>White oak vanity, curbless shower with two shower heads, freestanding tub</em></div></li>
+      <li><span>Bath</span><div><b>Limestone + Taj Mahal</b><em>White oak vanity with brass sconces, curbless glass shower with two shower heads, and a freestanding tub in its own window bay under a chandelier</em></div></li>
       <li><span>Light</span><div><b>Floor to ceiling windows</b><em>Vinyl grasscloth accent wall</em></div></li>
       <li><span>Closet</span><div><b>Custom walk-in</b><em>Built-ins, shoe storage, washer + dryer</em></div></li>
       <li><span>Upstairs</span><div><b>A walk-in in every bedroom</b><em>California Closets throughout. Bedrooms have their own baths except the guest room, which uses the limestone hall bath</em></div></li>
@@ -395,7 +449,7 @@ footer p{max-width:1000px;margin-top:12px}
 </section>
 
 <section class="aerial" id="aerial">
-  <img src="../images/wide.jpg" alt="Aerial view of 1242 Rembrandt Circle showing the house, pool, pool house and sport court on one acre" loading="lazy">
+  <img src="../images/p/044.jpg" alt="The pool, spa and pool house behind 1242 Rembrandt Circle" loading="lazy">
   <div class="cap">
     <h2 class="h2 fade">One acre.<br><em>Everything on it.</em></h2>
     <div class="tags fade"><span>Main house</span><span>Pool + spa</span><span>Pool house</span><span>Sport court</span><span>Open lawn</span></div>
@@ -407,11 +461,11 @@ footer p{max-width:1000px;margin-top:12px}
     <ul class="specs fade">
       <li><span>Covered porch</span><div><b>Knotty white pine ceiling</b><em>Isokern fireplace, built-in grill + griddle, Sonos audio</em></div></li>
       <li><span>Fire</span><div><b>Outdoor fireplace + a gas fire pit</b><em>Isokern fireplace on the covered porch, plus a fire pit with a lit bench</em></div></li>
-      <li><span>Pool</span><div><b>Heated saltwater pool + spa</b><em>Jandy saltwater system, gas heated</em></div></li>
-      <li><span>Pool house</span><div><b>Limestone floors, Isokern fireplace</b><em>Pine ceilings with cedar beams, white oak built-ins, standing seam roof</em></div></li>
+      <li><span>Pool</span><div><b>Heated saltwater pool + spa</b><em>Jandy saltwater system, gas heated. The raised spa spills into the pool, and there's a sun shelf for lounging in the water</em></div></li>
+      <li><span>Pool house</span><div><b>Limestone floors, Isokern fireplace</b><em>Vaulted pine ceiling with cedar beams, white oak built-ins, standing seam roof, and big glass doors that open right onto the pool deck</em></div></li>
       <li><span>Kitchenette</span><div><b>Sink, dishwasher, full fridge + freezer</b><em>No cooktop. Full bath with shower and laundry right there too, so you never carry dishes or towels back to the main house</em></div></li>
       <li><span>Bath + laundry</span><div><b>Full bath, stackable washer + dryer</b><em>Wet towels never come inside</em></div></li>
-      <li><span>Wellness</span><div><b>Gym + cold plunge</b><em>Rubber gym flooring. The pool house has its own HVAC and Wi-Fi</em></div></li>
+      <li><span>Wellness</span><div><b>Gym + cold plunge</b><em>Rubber gym flooring and its own glass door to the pool. The pool house has its own HVAC and Wi-Fi</em></div></li>
     </ul>
     <div class="sticky fade">
       <div class="eyebrow red">Outdoor Living</div>
@@ -509,6 +563,7 @@ footer p{max-width:1000px;margin-top:12px}
   </div>
 </footer>
 
+<div id="plb" role="dialog" aria-modal="true" aria-label="Photos"><button class="x" aria-label="Close">×</button><button class="nv pv" aria-label="Previous">‹</button><img id="plbImg" alt=""><button class="nv nx" aria-label="Next">›</button><div class="cap eyebrow" id="plbCap"></div></div>
 <div id="lb" role="dialog" aria-modal="true"><button class="x" aria-label="Close">×</button><div id="lbIn"></div></div>
 
 <script>
@@ -555,6 +610,27 @@ tf.addEventListener('click', () => {
   tf.innerHTML = `<iframe src="${tf.dataset.src}" title="1242 Rembrandt 3D tour" allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope" allowfullscreen></iframe>`;
   tf.style.cursor = 'auto';
 });
+const P = [["041","Front exterior"],["039","Front exterior"],["007","Front exterior"],["042","Garage"],["043","Front yard"],["047","Exterior"],["040","Front porch"],["086","Front entry"],["085",""],["027",""],["035",""],["022",""],["020","Living room"],["012","Living room"],["023",""],["038","Staircase"],["014","Dining room"],["015","Dining room"],["021","Dining room"],["033","Dining room"],["011","Kitchen"],["013","Kitchen"],["019","Kitchen"],["017","Kitchen"],["018","Kitchen"],["016","Kitchen"],["032","Powder bath"],["024","Primary bedroom"],["028","Primary bedroom"],["031",""],["025","Primary bath"],["029","Primary bath"],["026","Primary bath"],["030","Primary bath"],["034",""],["036",""],["037",""],["046","Covered porch"],["048","Covered porch"],["052","Covered porch"],["083","Covered porch fireplace"],["049","Covered porch"],["050","Outdoor kitchen"],["051","Covered porch"],["054","Covered porch"],["057","Covered porch"],["087","Fire pit"],["082","Fire pit"],["084","Fire pit"],["044","Pool and spa"],["045","Pool and spa"],["066","Pool and spa"],["055","Pool and spa"],["080","Pool and spa"],["081","Pool and spa"],["072","Pool deck"],["053","Backyard"],["073","Pool house"],["060","Pool house"],["059","Pool house"],["062","Pool house"],["065","Pool house"],["077","Pool house"],["076","Pool house"],["063","Pool house kitchenette"],["074","Pool house kitchenette"],["078","Pool house"],["075","Pool house kitchenette"],["064","Pool house gym"],["069","Pool house gym"],["061","Pool house bath"],["058","Pool house bath"],["056",""],["067","Sport court"],["068","Sport court"],["071","Sport court"],["079","Backyard"],["088",""],["089",""],["070",""],["002","Aerial"],["003","Aerial"],["004","Aerial"],["005","Aerial"],["006","Aerial"],["009","Aerial"],["001","Aerial"],["010","Aerial"]], PB = "../images/p/";
+const plb = $('#plb'), pimg = $('#plbImg'), pcap = $('#plbCap'); let pi = 0;
+function showP(i){
+  pi = (i + P.length) % P.length;
+  pimg.src = PB + P[pi][0] + '.jpg'; pimg.alt = P[pi][1] || '1242 Rembrandt Circle';
+  pcap.textContent = (P[pi][1] ? P[pi][1] + '  ·  ' : '') + (pi + 1) + ' / ' + P.length;
+  [1, -1].forEach(d => { new Image().src = PB + P[(pi + d + P.length) % P.length][0] + '.jpg'; });
+}
+function openP(id){ const i = P.findIndex(p => p[0] === id); showP(i < 0 ? 0 : i); plb.classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeP(){ plb.classList.remove('open'); document.body.style.overflow = ''; pimg.removeAttribute('src'); }
+$$('[data-p]').forEach(el => el.addEventListener('click', () => openP(el.dataset.p)));
+const gg = $('.ggrid');
+$$('.sa').forEach(b => b.addEventListener('click', () => gg.scrollBy({left: (b.classList.contains('sr') ? 1 : -1) * gg.clientWidth * .8, behavior: 'smooth'})));
+$('[data-all]').addEventListener('click', () => openP(P[0][0]));
+plb.querySelector('.pv').addEventListener('click', e => { e.stopPropagation(); showP(pi - 1); });
+plb.querySelector('.nx').addEventListener('click', e => { e.stopPropagation(); showP(pi + 1); });
+plb.addEventListener('click', e => { if (e.target === plb || e.target.classList.contains('x')) closeP(); });
+addEventListener('keydown', e => { if (!plb.classList.contains('open')) return; if (e.key === 'Escape') closeP(); if (e.key === 'ArrowRight') showP(pi + 1); if (e.key === 'ArrowLeft') showP(pi - 1); });
+let tx = null;
+plb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+plb.addEventListener('touchend', e => { if (tx === null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 40) showP(pi + (dx < 0 ? 1 : -1)); tx = null; });
 </script>
 </body>
 </html>
