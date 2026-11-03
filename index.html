@@ -46,8 +46,7 @@ body.ready #loader{opacity:0;visibility:hidden}
 #nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:22px var(--gut);color:#fff;transition:background .4s,color .4s,padding .4s}
 #nav.solid{background:rgba(247,246,244,.94);backdrop-filter:blur(12px);color:var(--ink);padding:14px var(--gut);border-bottom:1px solid var(--line)}
 #nav .lockup{display:flex;align-items:center;gap:14px;text-decoration:none}
-#nav .lockup img{height:22px;width:auto;filter:brightness(0) invert(1);transition:filter .4s}
-#nav.solid .lockup img{filter:none}
+#nav .lockup img{width:40px;height:40px}
 #nav .lockup b{font-family:var(--cond);font-weight:500;letter-spacing:.28em;font-size:13px;text-transform:uppercase}
 #nav .links{display:flex;gap:30px;align-items:center}
 #nav .links a{font-family:var(--cond);letter-spacing:.24em;text-transform:uppercase;font-size:13px;text-decoration:none;opacity:.9}
@@ -164,7 +163,7 @@ body.ready .reveal-line:nth-child(2) span{transition-delay:.15s}
 
 footer{background:var(--ink);color:rgba(255,255,255,.6);padding:70px 0 50px;font-size:13px}
 footer .lockup{display:flex;align-items:center;gap:14px;margin-bottom:28px;color:#fff;text-decoration:none}
-footer .lockup img{height:24px;filter:brightness(0) invert(1)}
+footer .lockup img{width:48px;height:48px}
 footer p{max-width:1000px;margin-top:12px}
 
 #lb{position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:200;display:none;align-items:center;justify-content:center;padding:4vw}
@@ -472,9 +471,13 @@ footer p{max-width:1000px;margin-top:12px}
 const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 window.addEventListener('load', () => {
   setTimeout(() => document.body.classList.add('ready'), 500);
+  // hero film: only fade in once Vimeo confirms it's actually playing; otherwise the aerial still stays
   const hv = $('#heroVid');
   hv.src = hv.dataset.src;
-  hv.addEventListener('load', () => setTimeout(() => hv.classList.add('on'), 1800));
+  const sdk = document.createElement('script');
+  sdk.src = 'https://player.vimeo.com/api/player.js';
+  sdk.onload = () => { try { const pl = new Vimeo.Player(hv); pl.on('timeupdate', d => { if (d.seconds > 0.4) hv.classList.add('on'); }); } catch(e){} };
+  document.head.appendChild(sdk);
 });
 setTimeout(() => document.body.classList.add('ready'), 3500);
 const nav = $('#nav');
