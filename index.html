@@ -171,6 +171,16 @@ footer p{max-width:1000px;margin-top:12px}
 #lb iframe{width:min(1400px,92vw);aspect-ratio:16/9;border:0;background:#000}
 #lb iframe.v{width:auto;height:88vh;aspect-ratio:9/16}
 #lb .x{position:absolute;top:18px;right:24px;color:#fff;font-size:34px;background:none;border:0;cursor:pointer;font-family:var(--serif)}
+/* 3D tour */
+.tour .head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px;flex-wrap:wrap}
+.tour .frame{position:relative;height:min(82vh,860px);background:#000;overflow:hidden;cursor:pointer}
+.tour .frame img{width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .6s,transform 1.2s ease}
+.tour .frame:hover img{opacity:.7;transform:scale(1.02)}
+.tour .frame .play{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;color:#fff;text-align:center}
+.tour .frame .play i{font-style:normal;font-family:var(--cond);letter-spacing:.24em;font-size:14px;border:1px solid rgba(255,255,255,.85);padding:16px 30px;backdrop-filter:blur(6px);background:rgba(0,0,0,.2)}
+.tour .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+@media(max-width:600px){.tour .head{margin-bottom:28px}.tour .frame{height:72svh}}
+
 /* phone flow (Ryan 11/3): heading before specs on flipped chapters, tighter rhythm */
 @media(max-width:900px){
   .chapter.flip .sticky{order:-1}
@@ -209,6 +219,7 @@ footer p{max-width:1000px;margin-top:12px}
   <a class="lockup" href="#top" aria-label="The Agency"><img src="images/agency-mark.png" alt="The Agency"><b>1242 Rembrandt</b></a>
   <div class="links">
     <a href="#film">The Film</a>
+    <a href="#tour">3D Tour</a>
     <a href="#acre">The Acre</a>
     <a href="#inside">Inside</a>
     <a href="#outside">Outdoor Living</a>
@@ -266,15 +277,23 @@ footer p{max-width:1000px;margin-top:12px}
   </div>
 </section>
 
-<section class="aerial" id="acre">
-  <img src="images/wide.jpg" alt="Aerial view of 1242 Rembrandt Circle showing the house, pool, pool house and sport court on one acre" loading="lazy">
-  <div class="cap">
-    <h2 class="h2 fade">One acre.<br><em>Everything on it.</em></h2>
-    <div class="tags fade"><span>Main house</span><span>Pool + spa</span><span>Pool house</span><span>Sport court</span><span>Open lawn</span></div>
+<section class="pad tour" id="tour">
+  <div class="wrap">
+    <div class="head fade">
+      <div>
+        <div class="eyebrow red">The 3D Tour</div>
+        <h2 class="h2" style="margin-top:20px">Walk it <em>yourself.</em></h2>
+      </div>
+      <p class="lead" style="max-width:420px;color:var(--mute)">Move room to room, both floors and the pool house, or jump straight to any spot from the floor plan.</p>
+    </div>
+    <div class="frame fade" id="tourFrame" data-src="https://www.zillow.com/view-imx/9a5d4277-30ae-49e6-920f-2e837de27b47?wl=true&amp;setAttribution=mls&amp;initialViewType=pano">
+      <img src="images/reel.jpg" alt="Start the 3D tour of 1242 Rembrandt Circle" loading="lazy">
+      <div class="play"><i>START THE 3D TOUR</i><span class="eyebrow" style="opacity:.75;font-size:11px">Tap to load · works on any phone</span></div>
+    </div>
   </div>
 </section>
 
-<section class="pad">
+<section class="pad" id="acre">
   <div class="wrap chapter">
     <div class="sticky fade">
       <div class="eyebrow red">The Land</div>
@@ -372,6 +391,14 @@ footer p{max-width:1000px;margin-top:12px}
       <li><span>Upstairs</span><div><b>A walk-in in every bedroom</b><em>California Closets throughout. Bedrooms have their own baths except the guest room, which uses the limestone hall bath</em></div></li>
       <li><span>Bonus</span><div><b>Big bonus room</b><em>Game room, playroom or media room</em></div></li>
     </ul>
+  </div>
+</section>
+
+<section class="aerial" id="aerial">
+  <img src="images/wide.jpg" alt="Aerial view of 1242 Rembrandt Circle showing the house, pool, pool house and sport court on one acre" loading="lazy">
+  <div class="cap">
+    <h2 class="h2 fade">One acre.<br><em>Everything on it.</em></h2>
+    <div class="tags fade"><span>Main house</span><span>Pool + spa</span><span>Pool house</span><span>Sport court</span><span>Open lawn</span></div>
   </div>
 </section>
 
@@ -531,6 +558,12 @@ function closeLB(){ lb.classList.remove('open'); lbIn.innerHTML = ''; }
 $$('[data-vid]').forEach(el => el.addEventListener('click', () => openVid(el.dataset.vid, el.dataset.v)));
 lb.addEventListener('click', e => { if (e.target === lb || e.target.classList.contains('x')) closeLB(); });
 addEventListener('keydown', e => { if (e.key === 'Escape') closeLB(); });
+const tf = $('#tourFrame');
+tf.addEventListener('click', () => {
+  if (tf.querySelector('iframe')) return;
+  tf.innerHTML = `<iframe src="${tf.dataset.src}" title="1242 Rembrandt 3D tour" allow="fullscreen; xr-spatial-tracking; accelerometer; gyroscope" allowfullscreen></iframe>`;
+  tf.style.cursor = 'auto';
+});
 </script>
 </body>
 </html>
