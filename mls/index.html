@@ -192,11 +192,13 @@ footer p{max-width:1000px;margin-top:12px}
 .band figure:hover img,.ggrid figure:hover img{transform:scale(1.03)}
 .gallery .head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:46px;flex-wrap:wrap}
 .sbox{position:relative}
-.ggrid{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;height:clamp(300px,62vh,660px);scrollbar-width:thin;overscroll-behavior-x:contain}
+.ggrid{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;height:clamp(260px,44vh,460px);scrollbar-width:thin;overscroll-behavior-x:contain}
 .ggrid figure{flex:0 0 auto;height:100%;scroll-snap-align:start}
 .ggrid img{height:100%;width:auto;transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}
 .sa{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:54px;height:54px;border-radius:50%;border:0;background:rgba(247,246,244,.92);color:var(--ink);font-family:var(--serif);font-size:34px;line-height:1;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.18)}
 .sl{left:14px}.sr{right:14px}
+.ggrid{cursor:grab;-webkit-overflow-scrolling:touch}.ggrid.drag{cursor:grabbing;scroll-snap-type:none;user-select:none}.ggrid.drag figure{pointer-events:none}.ggrid img{-webkit-user-drag:none;user-select:none}.sa.off{opacity:0;pointer-events:none}.sa{transition:opacity .3s}
+@media(max-width:800px){.sa{width:40px;height:40px}.sa svg{width:18px;height:18px}.sl{left:8px}.sr{right:8px}}
 .gallery .more{text-align:center;margin-top:40px}
 #plb{position:fixed;inset:0;background:rgba(8,8,8,.97);z-index:210;display:none;align-items:center;justify-content:center;touch-action:pan-y}
 #plb.open{display:flex}
@@ -212,7 +214,7 @@ footer p{max-width:1000px;margin-top:12px}
   .band::-webkit-scrollbar{display:none}
   .band figure{flex:0 0 84vw;height:auto;aspect-ratio:4/5;scroll-snap-align:center}
   .band figure.w{aspect-ratio:4/3;align-self:center}
-  .ggrid{height:56svh;gap:6px}.sa{display:none}
+  .ggrid{height:38svh;gap:6px}.sa{display:none}
   #plb .nv{display:none}
   #plb img{max-width:100vw;max-height:78vh}
 }
@@ -685,6 +687,15 @@ function closeP(){ plb.classList.remove('open'); document.body.style.overflow = 
 $$('[data-p]').forEach(el => el.addEventListener('click', () => openP(el.dataset.p)));
 const gg = $('.ggrid');
 $$('.sa').forEach(b => b.addEventListener('click', () => gg.scrollBy({left: (b.classList.contains('sr') ? 1 : -1) * gg.clientWidth * .8, behavior: 'smooth'})));
+// mouse drag-to-scroll; a drag never opens the lightbox
+let dx = null, moved = 0;
+gg.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse' || e.button) return; dx = {x: e.clientX, l: gg.scrollLeft}; moved = 0; });
+addEventListener('pointermove', e => { if (!dx) return; moved = Math.max(moved, Math.abs(e.clientX - dx.x)); if (moved > 5) { gg.classList.add('drag'); gg.scrollLeft = dx.l - (e.clientX - dx.x); } });
+addEventListener('pointerup', () => { if (!dx) return; dx = null; if (gg.classList.contains('drag')) { gg.classList.remove('drag'); } });
+gg.addEventListener('click', e => { if (moved > 5) { e.stopPropagation(); e.preventDefault(); moved = 0; } }, true);
+gg.addEventListener('dragstart', e => e.preventDefault());
+function edges(){ const m = gg.scrollWidth - gg.clientWidth - 2; $('.sa.sl').classList.toggle('off', gg.scrollLeft < 2); $('.sa.sr').classList.toggle('off', gg.scrollLeft > m); }
+gg.addEventListener('scroll', edges, {passive: true}); edges();
 $('[data-all]').addEventListener('click', () => openP(P[0][0]));
 plb.querySelector('.pv').addEventListener('click', e => { e.stopPropagation(); showP(pi - 1); });
 plb.querySelector('.nx').addEventListener('click', e => { e.stopPropagation(); showP(pi + 1); });
