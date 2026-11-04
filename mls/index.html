@@ -87,7 +87,7 @@ body.ready .reveal-line:nth-child(2) span{transition-delay:.15s}
 
 /* stats */
 .stats{border-bottom:1px solid var(--line)}
-.stats .wrap{display:grid;grid-template-columns:repeat(5,1fr)}
+.stats .wrap{display:grid;grid-template-columns:repeat(6,1fr)}
 .stat{padding:38px 10px;text-align:center;border-left:1px solid var(--line)}
 .stat:first-child{border-left:0}
 .stat b{display:block;font-family:var(--serif);font-weight:300;font-size:clamp(30px,3.2vw,48px);line-height:1}
@@ -311,6 +311,7 @@ footer p{max-width:1000px;margin-top:12px}
 
 <div class="stats">
   <div class="wrap">
+    <div class="stat"><b>5,885</b><span class="eyebrow">Sq ft · house + pool house</span></div>
     <div class="stat"><b>1.00</b><span class="eyebrow">Flat acre</span></div>
     <div class="stat"><b>2023</b><span class="eyebrow">Built</span></div>
     <div class="stat"><b>3</b><span class="eyebrow">Car garage + EV</span></div>
@@ -539,9 +540,9 @@ footer p{max-width:1000px;margin-top:12px}
       </div>
       <p class="lead" style="max-width:440px;color:var(--mute)">The primary suite and an office are on the main level. The other bedrooms, the bonus room, a second office and laundry are upstairs. The pool house has the gym, a kitchenette and a full bath.</p>
     </div>
-    <div class="fptabs fade"><button class="on" data-fp="0">Main level</button><button data-fp="1">Upper level</button><button data-fp="2">Pool house</button></div>
-    <figure class="fpimg fade" id="fpFig"><img id="fpImg" src="../images/fp/main.jpg" alt="Main level floor plan" loading="lazy"></figure>
-    <p style="margin-top:14px;font-size:13px;color:var(--mute)">Tap the plan to open it full size. Room sizes are approximate.</p>
+    <div class="fptabs fade"><button class="on" data-fp="0">Main level · 2,533 sf</button><button data-fp="1">Upper level · 2,477 sf</button><button data-fp="2">Pool house · 875 sf</button></div>
+    <figure class="fpimg fade" id="fpFig"><img id="fpImg" src="../images/fp/main-mp.jpg" alt="Main level floor plan" loading="lazy"></figure>
+    <p style="margin-top:14px;font-size:13px;color:var(--mute)">5,885 sq ft of living area in all: 5,010 in the main house and 875 in the pool house. Tap the plan to open it full size. Square footage and room sizes are approximate.</p>
   </div>
 </section>
 
@@ -667,7 +668,7 @@ tf.addEventListener('click', () => {
 });
 const P = [["041","Front exterior"],["039","Front exterior"],["007","Front exterior"],["042","Garage"],["043","Front yard"],["047","Exterior"],["040","Front porch"],["086","Front entry"],["085",""],["027",""],["035",""],["022",""],["020","Living room"],["012","Living room"],["023",""],["038","Staircase"],["014","Dining room"],["015","Dining room"],["021","Dining room"],["033","Dining room"],["011","Kitchen"],["013","Kitchen"],["019","Kitchen"],["017","Kitchen"],["018","Kitchen"],["016","Kitchen"],["032","Powder bath"],["024","Primary bedroom"],["028","Primary bedroom"],["031",""],["025","Primary bath"],["029","Primary bath"],["026","Primary bath"],["030","Primary bath"],["034",""],["036",""],["037",""],["046","Covered porch"],["048","Covered porch"],["052","Covered porch"],["083","Covered porch fireplace"],["049","Covered porch"],["050","Outdoor kitchen"],["051","Covered porch"],["054","Covered porch"],["057","Covered porch"],["087","Fire pit"],["082","Fire pit"],["084","Fire pit"],["044","Pool and spa"],["045","Pool and spa"],["066","Pool and spa"],["055","Pool and spa"],["090","Pool and spa"],["080","Pool and spa"],["081","Pool and spa"],["072","Pool deck"],["053","Backyard"],["073","Pool house"],["060","Pool house"],["059","Pool house"],["062","Pool house"],["065","Pool house"],["077","Pool house"],["076","Pool house"],["063","Pool house kitchenette"],["074","Pool house kitchenette"],["078","Pool house"],["075","Pool house kitchenette"],["064","Pool house gym"],["069","Pool house gym"],["061","Pool house bath"],["058","Pool house bath"],["056",""],["067","Sport court"],["068","Sport court"],["071","Sport court"],["079","Backyard"],["088",""],["089",""],["070",""],["002","Aerial"],["003","Aerial"],["004","Aerial"],["005","Aerial"],["006","Aerial"],["009","Aerial"],["001","Aerial"],["010","Aerial"]], PB = "../images/p/";
 const plb = $('#plb'), pimg = $('#plbImg'), pcap = $('#plbCap'); let pi = 0;
-const FP = [["main","Main level"],["upper","Upper level"],["poolhouse","Pool house"]], FB = PB.replace('p/', 'fp/');
+const FP = [["main-mp","Main level"],["upper-mp","Upper level"],["poolhouse-mp","Pool house"]], FB = PB.replace('p/', 'fp/');
 let L = P, LB = PB;
 function showP(i){
   pi = (i + L.length) % L.length;
